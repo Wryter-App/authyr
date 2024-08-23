@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const Button = ({ className = "", children, ...rest }) => {
     return (
         <button className={`button ${className}`} {...rest}>
-            <b className="log-in1">
+            <b className="log-in2">
                 {children}
             </b>
         </button>

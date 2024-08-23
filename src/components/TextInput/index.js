@@ -1,10 +1,13 @@
 const TextInput = ({ className = "", placeholder, ...rest }) => {
   return (
+    <div className={`textinput-wrapper ${className}`
+}>
     <input
-      className={`textinput ${className}`}
+      className={`textinput`}
       placeholder={placeholder}
       {...rest}
     />
+    </div>
   );
 };
 
