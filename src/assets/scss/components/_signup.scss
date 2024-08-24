@@ -129,6 +129,11 @@
   color: var(--color-white);
   font-family: var(--h3);
 }
+
+ .error-message {
+    color: red;
+    font-weight: bold;
+  }
 @media screen and (max-width: 1200px) {
   .sign-up-page {
     flex: 1;
@@ -183,4 +188,11 @@
     padding-bottom: 4.188rem;
     box-sizing: border-box;
   }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
 }
+
+

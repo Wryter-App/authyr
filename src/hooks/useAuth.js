@@ -61,6 +61,7 @@ export const AuthProvider = ({ children }) => {
     loginUser,
     logOut,
     loading,
+    error
   };
 
   return (

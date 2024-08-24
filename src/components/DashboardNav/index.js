@@ -13,7 +13,7 @@ const DashboardNav = ({ className = "" }) => {
         <div className="topnav">
           <a className="settings">Settings</a>
           <a className="help">Help</a>
-          <span onClick={logOut} className="log-out">
+          <span data-test='logout-link' onClick={logOut} className="log-out">
             Log Out
           </span>
         </div>

@@ -18,4 +18,9 @@ Then("I click the login button", () => {
 
 Then("I should be redirected to the user dashboard", () => {
   cy.get('.welcome-user').should('be.visible')
+  cy.getByData('logout-link').click()
 });
+ 
+Then("I should receive an error message", () => {
+
+})

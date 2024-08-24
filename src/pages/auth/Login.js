@@ -5,11 +5,11 @@ import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [name, setName] = useState("");
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { loginUser, user } = useAuth();
+  const { loginUser, user, error } = useAuth();
   const navigate = useNavigate();
   const onButtonClick = (e) => {
     e.preventDefault();
@@ -53,6 +53,9 @@ const Login = () => {
                           onChange={(e) => setPassword(e.target.value)}
                           data-test='password-input'
             />
+          </div>
+          <div className='error-message-container'>
+            {error && <div data-test='error-message' className='error-message'>{error.message}</div>}
           </div>
           <Button data-test='login-button' onClick={onButtonClick}>Log In</Button>
         </form>
