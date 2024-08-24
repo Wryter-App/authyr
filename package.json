@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview --port 5173",
     "cy:open": "cypress open",
-    "cy:run": "cypress run -- --spec=`cypress/e2e/features/*"
+    "cy:run": "cypress run --record --parallel --ci-build-id $BUILD_BUILDNUMBER",
+    "cy:ci": "start-server-and-test preview http://localhost:5173 cy:run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
