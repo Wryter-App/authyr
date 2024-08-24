@@ -1,0 +1,42 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
+  
+- task: CacheBeta@1
+  inputs:
+    key: npm | $(Agent.OS) | package-lock.json
+    path: /home/vsts/.npm 
+    restoreKeys: npm | $(Agent.OS) | package-lock.json 
+  displayName: Cache NPM packages 
+
+- task: CacheBeta@1
+  inputs:
+    key: cypress | $(Agent.OS) | package-lock.json 
+    path: /home/vsts/.cache/Cypress 
+    restoreKeys: cypress | $(Agent.OS) | package-lock.json 
+  displayName: Cache Cypress binary
+
+    
+
+- script: npm ci --prefer-offline 
+- script: npm run preview &
+  
+- script: npx wait-on 'http://localhost:5173'
+
+- script: npx cypress run --record --parallel --ci-build-id $BUILD_BUILDNUMBER
+
+  env:
+    CYPRESS_RECORD_KEY: $(CYPRESS_RECORD_KEY)
