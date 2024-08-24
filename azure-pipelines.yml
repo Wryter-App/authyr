@@ -35,7 +35,7 @@ steps:
     
 
 - script: npm ci --prefer-offline 
-- script: npx start-server-and-test preview http://localhost:5173 cypress run --record --parallel --ci-build-id $BUILD_BUILDNUMBER
+- script: npm run cy:ci
 
   env:
     CYPRESS_RECORD_KEY: $(CYPRESS_RECORD_KEY)
