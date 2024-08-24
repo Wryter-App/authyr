@@ -6,52 +6,70 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest 
-
-variables:
-  - group: Firebase
-
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+jobs:
+- job: Cypress_e2e_tests
+  pool:
+    vmImage: ubuntu-latest 
   
-- task: CacheBeta@1
-  inputs:
-    key: npm | $(Agent.OS) | package-lock.json
-    path: /home/vsts/.npm 
-    restoreKeys: npm | $(Agent.OS) | package-lock.json 
-  displayName: Cache NPM packages 
+  variables:
+    - group: Firebase
 
-- task: CacheBeta@1
-  inputs:
-    key: cypress | $(Agent.OS) | package-lock.json 
-    path: /home/vsts/.cache/Cypress 
-    restoreKeys: cypress | $(Agent.OS) | package-lock.json 
-  displayName: Cache Cypress binary
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Install Node.js'
+  
+  - task: CacheBeta@1
+    inputs:
+      key: npm | $(Agent.OS) | package-lock.json
+      path: /home/vsts/.npm 
+      restoreKeys: npm | $(Agent.OS) | package-lock.json 
+    displayName: Cache NPM packages 
+
+  - task: CacheBeta@1
+    inputs:
+      key: cypress | $(Agent.OS) | package-lock.json 
+      path: /home/vsts/.cache/Cypress 
+      restoreKeys: cypress | $(Agent.OS) | package-lock.json 
+    displayName: Cache Cypress binary
 
     
 
-- script: npm ci --prefer-offline 
-- script: npm run cy:ci
-
-  env:
-    CYPRESS_RECORD_KEY: $(CYPRESS_RECORD_KEY)
-- task: PublishTestResults@2 
-  displayName: 'Publish Test Results' 
-  inputs: 
-    testResultsFiles: 'test-results-*.xml'
-    searchFolder: 'results'
-    mergeTestResults: true 
-    failTaskOnFailedTests: true 
-  continueOnError: true 
-  condition: succeededOrFailed()
+  - script: npm ci 
+    displayName: 'Install npm dependencies'
+  
+  - script: npm run cy:verify 
+    displayName: 'Cypress verify'
+    
+  - script: npm run cy:info 
+    displayName: 'Cypress Info'
+    
+  - script: npm run build 
+    displayName: 'Build' 
+    
+  - script: |
+      npx print-env AGENT 
+      npx print-env BUILD 
+      npx print-env SYSTEM
+      npm run preview & wait-on http://localhost:5173
+      npx cypress run --record --parallel --ci-build-id $BUILD_BUILDNUMBER --group "Azure CI"
+    displayName: 'Run Cypress Tests'
+    env:
+      CYPRESS_RECORD_KEY: $(CYPRESS_RECORD_KEY)
+  - task: PublishTestResults@2 
+    displayName: 'Publish Test Results' 
+    inputs: 
+      testResultsFiles: 'test-results-*.xml'
+      searchFolder: 'results'
+      mergeTestResults: true 
+      failTaskOnFailedTests: true 
+    continueOnError: true 
+    condition: succeededOrFailed()
   
  
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'dist'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'dist'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
