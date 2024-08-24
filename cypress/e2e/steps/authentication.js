@@ -1,15 +1,15 @@
-import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 Given("I am on the login page", () => {
   cy.visit("http://localhost:5173/login");
 });
 
-When("I enter a valid email {string}", (email) => {
+When("I enter an email {string}", (email) => {
   cy.getByData("email-input").type(email);
 });
 
-When("I ender a valid password {string}", (password) => {
-  cy.getByData("password").type(password);
+When("I enter a password {string}", (password) => {
+  cy.getByData("password-input").type(password);
 });
 
 Then("I click the login button", () => {
@@ -17,5 +17,5 @@ Then("I click the login button", () => {
 });
 
 Then("I should be redirected to the user dashboard", () => {
-  cy.getByData("user-dash").should("be.visible");
+  cy.get('.welcome-user').should('be.visible')
 });

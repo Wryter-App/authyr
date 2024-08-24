@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.624" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2024-08-24T17:28:43" tests="0" file="cypress\e2e\features\Authentication.feature" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Authentication" timestamp="2024-08-24T17:28:43" tests="1" time="4.617" failures="0">
+    <testcase name="Authentication User can log in with valid email and password" time="2.794" classname="User can log in with valid email and password">
+    </testcase>
+  </testsuite>
+</testsuites>
