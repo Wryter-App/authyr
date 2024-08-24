@@ -10,7 +10,9 @@
     "preview": "vite preview --port 5173",
     "cy:open": "cypress open",
     "cy:run": "cypress run --record --parallel --ci-build-id $BUILD_BUILDNUMBER",
-    "cy:ci": "start-server-and-test preview http://localhost:5173 cy:run"
+    "cy:ci": "start-server-and-test preview http://localhost:5173 cy:run",
+    "cy:verify": "cypress verify",
+    "cy:info": "cypress info"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
