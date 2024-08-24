@@ -7,7 +7,10 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: ubuntu-latest 
+
+variables:
+  - group: Firebase
 
 steps:
 - task: NodeTool@0
@@ -40,3 +43,19 @@ steps:
 
   env:
     CYPRESS_RECORD_KEY: $(CYPRESS_RECORD_KEY)
+- task: PublishTestResults@2 
+  displayName: 'Publish Test Results' 
+  inputs: 
+    testResultsFiles: 'test-results-*.xml'
+    searchFolder: 'results'
+    mergeTestResults: true 
+    failTaskOnFailedTests: true 
+  continueOnError: true 
+  condition: succeededOrFailed()
+  
+ 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
