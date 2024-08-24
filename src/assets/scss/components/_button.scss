@@ -16,6 +16,7 @@
     padding: var(--padding-mini) var(--padding-xl);
     background-color: transparent;
     align-self: stretch;
+    max-height: 32px;
     box-shadow: 0 4px 22px 2px rgba(0, 0, 0, 0.15);
     border-radius: var(--br-xl);
     background: linear-gradient(90deg, #730e8d 16%, #af14c6 87%);

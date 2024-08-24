@@ -1,0 +1,43 @@
+.welcome-user-parent {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 10rem;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+
+    .upper-nav {
+        width: 100vw;
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--h3);
+        padding-top: 18px;
+        align-items: center;
+        padding-right: 36px;
+    }
+
+    
+    .frame-child {
+        position: absolute;
+        right: 0;
+    }
+
+    .topnav {
+        z-index: 10;
+        color: white;
+
+        a, span {
+            color: white;
+            z-index: 100;
+            padding: 6px 24px;
+            cursor: pointer;
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
+}

@@ -1,0 +1,68 @@
+.current-projects {
+    margin: 0;
+    position: relative;
+    font-size: inherit;
+    font-weight: 700;
+    font-family: inherit;
+    flex-shrink: 0;
+}
+
+.current-projects-parent,
+.user-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-sizing: border-box;
+
+}
+
+.current-projects-parent {
+    width: 75rem;
+    height: 25rem;
+    padding: 0 var(--padding-xl) 23rem 0;
+    gap: 29px;
+    max-width: 100%;
+    text-align: left;
+    font-size: var(--font-size-5xl);
+    color: var(--color-black);
+    font-family: var(--link);
+}
+
+.user-dashboard {
+    width: 100%;
+    position: relative;
+    background-color: var(--color-white);
+    overflow: hidden;
+    padding: 0 0 0 10.75rem;
+    gap: 137px;
+    padding-top: 30vh;
+    font-family: var(--h3)
+    
+}
+
+@media screen and (max-width: 800px) {
+  .current-projects-parent {
+    padding-bottom: 15rem;
+    box-sizing: border-box;
+  }
+  .user-dashboard {
+    gap: 68px;
+    padding-left: 5.375rem;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .current-projects {
+    font-size: var(--font-size-lgi);
+  }
+  .current-projects-parent {
+    padding-bottom: 9.75rem;
+    box-sizing: border-box;
+  }
+  .user-dashboard {
+    gap: 34px;
+    padding-left: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

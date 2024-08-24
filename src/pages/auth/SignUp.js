@@ -13,7 +13,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const onButtonClick = (e) => {
     e.preventDefault()
-    registerUser( email, password)
+    registerUser(name, email, password)
   };
 
   const onLogInTextClick = () => {
