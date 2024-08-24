@@ -4,6 +4,7 @@ import Layout from "./layout/AppLayout";
 import SignUp from "./pages/auth/SignUp";
 import UserDashboard from "./pages/UserDashboard";
 import Login from "./pages/auth/Login";
+import Settings from "./pages/Settings";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Route path='/login' element={<Login />} />
       <Route path="/app" element={<Layout />}>
         <Route index element={<UserDashboard />} />
+        <Route path='settings' element={<Settings />} />
       </Route>
     </Routes>
   );

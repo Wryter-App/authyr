@@ -26,6 +26,7 @@
     "sass": "^1.77.8"
   },
   "devDependencies": {
+    "@azure/static-web-apps-cli": "^2.0.1",
     "@badeball/cypress-cucumber-preprocessor": "^20.1.2",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.2",
     "@eslint/js": "^9.9.0",
