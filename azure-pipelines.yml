@@ -9,7 +9,7 @@ trigger:
 jobs:
 - job: Cypress_e2e_tests
   pool:
-    vmImage: ubuntu-latest 
+    vmImage: windows-latest 
   
   variables:
     - group: Firebase
@@ -76,7 +76,7 @@ jobs:
       
 - job: Deploy_Static_Web_App 
   pool: 
-    vmImage: ubuntu-latest
+    vmImage: windows-latest
   variables:
     - group: Firebase 
   
