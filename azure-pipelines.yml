@@ -72,4 +72,22 @@ jobs:
     inputs:
       PathtoPublish: 'dist'
       ArtifactName: 'drop'
-      publishLocation: 'Container'
+      publishLocation: 'Container' 
+      
+- job: Deploy_Static_Web_App 
+  pool: 
+    vmImage: ubuntu-latest
+  variables:
+    - group: Firebase 
+  
+  steps:
+    - checkout: self
+      submodules: true 
+    
+    - task: AzureStaticWebApp@0
+      inputs:
+        app_location: 'src'
+        app_build_command: 'build'
+        output_location: 'dist'
+        verbose: true
+        azure_static_web_apps_api_token: '910ad882eee145af22288c6e5103dc5cb4b8492943cbe5d3173d67776fdb97755-15150a66-00cc-4f1f-80e2-0e2cbb866f06010521394'
