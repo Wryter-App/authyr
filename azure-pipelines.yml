@@ -9,7 +9,7 @@ trigger:
 jobs:
 - job: Cypress_e2e_tests
   pool:
-    vmImage: windows-latest 
+    vmImage: ubuntu-latest
   
   variables:
     - group: Firebase
