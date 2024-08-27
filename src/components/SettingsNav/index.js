@@ -2,19 +2,21 @@ import Button from "../Button";
 import { useAuth } from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 
-const DashboardNav = ({ className = "" }) => {
+const SettingsNav = ({ className = "" }) => {
   const { user, logOut } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <section className={`welcome-user-parent ${className}`}>
       <div className="upper-nav">
         <h1 className="welcome-user">Welcome, {user.displayName}!</h1>
 
-        <Button onClick={() => navigate('/app/new')}>New Project</Button>
+        
         <div className="topnav">
-          <a onClick={() => navigate('/app/settings')} className="settings">Settings</a>
+          <a onClick={() => navigate("/app")} className="settings">
+            Dashboard
+          </a>
           <a className="help">Help</a>
-          <span data-test='logout-link' onClick={logOut} className="log-out">
+          <span data-test="logout-link" onClick={logOut} className="log-out">
             Log Out
           </span>
         </div>
@@ -26,4 +28,4 @@ const DashboardNav = ({ className = "" }) => {
   );
 };
 
-export default DashboardNav;
+export default SettingsNav;

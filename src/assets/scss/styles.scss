@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import 'global';
 
 @import './components/button';
@@ -7,3 +11,9 @@
 @import './components/dashboard-nav';
 
 @import './components/signup';
+@import './components/new-project';
+
+
+a {
+    text-decoration: none !important;
+}
